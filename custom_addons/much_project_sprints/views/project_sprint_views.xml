@@ -6,15 +6,19 @@
             <form>
                 <header>
                     <button name="action_start" string="Start Sprint" type="object"
-                            class="btn-primary" invisible="state != 'open'"/>
+                            class="btn-primary" invisible="state != 'open'"
+                            groups="project.group_project_manager"/>
                     <button name="action_close" string="Close Sprint" type="object"
                             class="btn-primary" invisible="state != 'active'"
-                            confirm="Unfinished tasks will be moved to the next open sprint (or the backlog). Continue?"/>
+                            confirm="Unfinished tasks will be moved to the next open sprint (or the backlog). Continue?"
+                            groups="project.group_project_manager"/>
                     <button name="action_reopen" string="Reopen" type="object"
-                            invisible="state != 'closed'"/>
+                            invisible="state != 'closed'"
+                            groups="project.group_project_manager"/>
                     <button name="action_open_add_tasks_wizard" string="Add Tasks from Backlog"
                             type="object" class="btn-secondary"
-                            invisible="state != 'open'"/>
+                            invisible="state != 'open'"
+                            groups="project.group_project_manager"/>
                     <field name="state" widget="statusbar" statusbar_visible="open,active,closed"/>
                 </header>
                 <sheet>

@@ -12,6 +12,7 @@
     'depends': ['project'],
     'data': [
         'security/ir.model.access.csv',
+        'security/security.xml',
         'views/project_sprint_views.xml',
         'views/project_task_views.xml',
         'views/project_sprint_add_tasks_wizard_views.xml'
