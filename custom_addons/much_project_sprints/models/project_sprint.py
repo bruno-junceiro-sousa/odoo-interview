@@ -8,7 +8,7 @@ class ProjectSprint(models.Model):
 
     _name = 'project.sprint'
     _description = 'Project Sprint'
-    _inherit = ['mail.thread']
+    _inherit = ['mail.thread','mail.activity.mixin']
     _order = 'date_start desc'
 
     name = fields.Char(
@@ -162,3 +162,17 @@ class ProjectSprint(models.Model):
     def action_reopen(self):
 
         self.filtered(lambda x: x.state == 'closed').write({'state': 'open'})
+
+
+    def action_view_tasks(self):
+        
+        self.ensure_one()
+        
+        action = self.env['ir.actions.act_window']._for_xml_id('project.action_view_task')
+        action['domain'] = [('sprint_id', '=', self.id)]
+        action['context'] = {
+            'default_sprint_id': self.id,
+            'default_project_id': self.project_id.id
+        }
+
+        return action
