@@ -9,18 +9,4 @@
             </xpath>
         </field>
     </record>
-
-    <record id="action_project_task_backlog" model="ir.actions.act_window">
-        <field name="name">Backlog</field>
-        <field name="res_model">project.task</field>
-        <field name="view_mode">list,form</field>
-        <field name="domain">[('sprint_id', '=', False)]</field>
-        <field name="context">{'search_default_my_tasks': 0}</field>
-    </record>
-
-    <menuitem id="menu_project_task_backlog"
-        name="Backlog"
-        parent="project.menu_main_pm"
-        action="action_project_task_backlog"
-        sequence="5"/>
 </odoo>

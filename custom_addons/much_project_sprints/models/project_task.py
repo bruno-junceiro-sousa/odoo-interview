@@ -56,15 +56,3 @@ class ProjectTask(models.Model):
         if new_sprint_id and any(task.sprint_id.id != new_sprint_id for task in self):
             self._check_sprint_not_closed([vals['sprint_id']])
         return super().write(vals)
-
-
-    def action_assign_to_sprint_wizard(self):
-
-        return {
-            'name': 'Assign to Sprint',
-            'type': 'ir.actions.act_window',
-            'res_model': 'project.sprint.assign.wizard',
-            'view_mode': 'form',
-            'target': 'new',
-            'context': {'default_task_ids': self.ids},
-        }

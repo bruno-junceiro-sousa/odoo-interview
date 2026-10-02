@@ -176,3 +176,17 @@ class ProjectSprint(models.Model):
         }
 
         return action
+
+
+    def action_open_add_tasks_wizard(self):
+
+        self.ensure_one()
+        
+        return {
+            'name': _('Add Tasks from Backlog'),
+            'type': 'ir.actions.act_window',
+            'res_model': 'project.sprint.add.tasks.wizard',
+            'view_mode': 'form',
+            'target': 'new',
+            'context': {'default_sprint_id': self.id},
+        }

@@ -12,6 +12,9 @@
                             confirm="Unfinished tasks will be moved to the next open sprint (or the backlog). Continue?"/>
                     <button name="action_reopen" string="Reopen" type="object"
                             invisible="state != 'closed'"/>
+                    <button name="action_open_add_tasks_wizard" string="Add Tasks from Backlog"
+                            type="object" class="btn-secondary"
+                            invisible="state != 'open'"/>
                     <field name="state" widget="statusbar" statusbar_visible="open,active,closed"/>
                 </header>
                 <sheet>

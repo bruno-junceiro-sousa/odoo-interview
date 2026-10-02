@@ -14,6 +14,7 @@
         'security/ir.model.access.csv',
         'views/project_sprint_views.xml',
         'views/project_task_views.xml',
+        'views/project_sprint_add_tasks_wizard_views.xml'
     ],
     'installable': True,
     'application': False,
