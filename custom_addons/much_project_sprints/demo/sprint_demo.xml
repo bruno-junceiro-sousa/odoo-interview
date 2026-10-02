@@ -1,0 +1,126 @@
+<odoo>
+    <data noupdate="1">
+
+        <!-- ================= STAGES ================= -->
+        <record id="demo_stage_todo" model="project.task.type">
+            <field name="name">To Do</field>
+            <field name="sequence">1</field>
+        </record>
+
+        <record id="demo_stage_in_progress" model="project.task.type">
+            <field name="name">In Progress</field>
+            <field name="sequence">2</field>
+        </record>
+
+        <record id="demo_stage_done" model="project.task.type">
+            <field name="name">Done</field>
+            <field name="sequence">3</field>
+            <field name="fold">True</field>
+        </record>
+
+
+        <!-- ================= PROJECT ================= -->
+        <record id="demo_project_sprint_feature" model="project.project">
+            <field name="name">Project Sprint Feature Demo</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="type_ids" eval="[(6, 0, [
+                ref('demo_stage_todo'),
+                ref('demo_stage_in_progress'),
+                ref('demo_stage_done')
+            ])]"/>
+        </record>
+
+       
+        <!-- ================= SPRINTS ================= -->
+        <record id="demo_sprint_1" model="project.sprint">
+            <field name="name">Sprint 1</field>
+            <field name="project_id" ref="demo_project_sprint_feature"/>
+            <field name="date_start" eval="(DateTime.today() - relativedelta(days=28)).strftime('%Y-%m-%d')"/>
+            <field name="date_end" eval="(DateTime.today() - relativedelta(days=15)).strftime('%Y-%m-%d')"/>
+            <field name="state">open</field>
+        </record>
+
+        <record id="demo_sprint_2" model="project.sprint">
+            <field name="name">Sprint 2</field>
+            <field name="project_id" ref="demo_project_sprint_feature"/>
+            <field name="date_start" eval="(DateTime.today() - relativedelta(days=7)).strftime('%Y-%m-%d')"/>
+            <field name="date_end" eval="(DateTime.today() + relativedelta(days=7)).strftime('%Y-%m-%d')"/>
+            <field name="state">open</field>
+        </record>
+
+        <record id="demo_sprint_3" model="project.sprint">
+            <field name="name">Sprint 3</field>
+            <field name="project_id" ref="demo_project_sprint_feature"/>
+            <field name="date_start" eval="(DateTime.today() + relativedelta(days=8)).strftime('%Y-%m-%d')"/>
+            <field name="date_end" eval="(DateTime.today() + relativedelta(days=21)).strftime('%Y-%m-%d')"/>
+            <field name="state">open</field>
+        </record>
+
+
+        <!-- ================= TASKS: Sprint 1 (closed) ================= -->
+        <record id="demo_task_s1_1" model="project.task">
+            <field name="name">Setup CI/CD pipeline</field>
+            <field name="project_id" ref="demo_project_sprint_feature"/>
+            <field name="sprint_id" ref="demo_sprint_1"/>
+            <field name="stage_id" ref="demo_stage_done"/>
+        </record>
+
+        <record id="demo_task_s1_2" model="project.task">
+            <field name="name">Define database schema</field>
+            <field name="project_id" ref="demo_project_sprint_feature"/>
+            <field name="sprint_id" ref="demo_sprint_1"/>
+            <field name="stage_id" ref="demo_stage_done"/>
+        </record>
+
+
+        <!-- ================= TASKS: Sprint 2 (active) ================= -->
+        <record id="demo_task_s2_1" model="project.task">
+            <field name="name">Implement login page</field>
+            <field name="project_id" ref="demo_project_sprint_feature"/>
+            <field name="sprint_id" ref="demo_sprint_2"/>
+            <field name="stage_id" ref="demo_stage_done"/>
+        </record>
+
+        <record id="demo_task_s2_2" model="project.task">
+            <field name="name">Build dashboard widgets</field>
+            <field name="project_id" ref="demo_project_sprint_feature"/>
+            <field name="sprint_id" ref="demo_sprint_2"/>
+            <field name="stage_id" ref="demo_stage_in_progress"/>
+        </record>
+
+        <record id="demo_task_s2_3" model="project.task">
+            <field name="name">Integrate payment gateway</field>
+            <field name="project_id" ref="demo_project_sprint_feature"/>
+            <field name="sprint_id" ref="demo_sprint_2"/>
+            <field name="stage_id" ref="demo_stage_in_progress"/>
+        </record>
+
+        <record id="demo_task_s2_4" model="project.task">
+            <field name="name">Write API documentation</field>
+            <field name="project_id" ref="demo_project_sprint_feature"/>
+            <field name="sprint_id" ref="demo_sprint_2"/>
+            <field name="stage_id" ref="demo_stage_todo"/>
+        </record>
+
+
+        <!-- ================= TASKS: Backlog (no sprint) ================= -->
+        <record id="demo_task_backlog_1" model="project.task">
+            <field name="name">Design email notification templates</field>
+            <field name="project_id" ref="demo_project_sprint_feature"/>
+            <field name="stage_id" ref="demo_stage_todo"/>
+        </record>
+
+        <record id="demo_task_backlog_2" model="project.task">
+            <field name="name">Add dark mode support</field>
+            <field name="project_id" ref="demo_project_sprint_feature"/>
+            <field name="stage_id" ref="demo_stage_todo"/>
+        </record>
+
+        <record id="demo_task_backlog_3" model="project.task">
+            <field name="name">Refactor authentication middleware</field>
+            <field name="project_id" ref="demo_project_sprint_feature"/>
+            <field name="stage_id" ref="demo_stage_todo"/>
+        </record>
+
+    </data>
+</odoo>

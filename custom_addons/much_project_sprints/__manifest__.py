@@ -17,7 +17,9 @@
         'views/project_task_views.xml',
         'views/project_sprint_add_tasks_wizard_views.xml'
     ],
+    'demo': [
+        'demo/sprint_demo.xml'
+    ],
     'installable': True,
     'application': False,
 }
-# INFO: 
