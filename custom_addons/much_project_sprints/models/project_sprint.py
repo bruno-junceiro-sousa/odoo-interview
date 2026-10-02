@@ -58,7 +58,7 @@ class ProjectSprint(models.Model):
     def init(self):
 
         tools.create_index(
-            self._cr,
+            self.env.cr,
             'project_sprint_single_active_idx',
             self._table,
             ['project_id'],
